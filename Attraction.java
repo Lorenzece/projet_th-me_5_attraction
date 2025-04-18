@@ -4,12 +4,12 @@ public class Attraction {
     private int id;
     private String nom;
     private String description;
-    private String prix;
-    private String limite_age;
+    private float prix;
+    private float limite_age;
     private String imageUrl;
 
     // Constructeur complet (sans id, par exemple pour l'ajout, et avec id pour les lectures depuis la BDD)
-    public Attraction(String nom, String description, String prix, String limite_age, String imageUrl) {
+    public Attraction(String nom, String description, float prix, float limite_age, String imageUrl) {
         this.nom = nom;
         this.description = description;
         this.prix = prix;
@@ -17,7 +17,7 @@ public class Attraction {
         this.imageUrl = imageUrl;
     }
 
-    public Attraction(int id, String nom, String description, String prix, String limite_age, String imageUrl) {
+    public Attraction(int id, String nom, String description, float prix, float limite_age, String imageUrl) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -43,11 +43,11 @@ public class Attraction {
         return description;
     }
 
-    public String getPrix() {
+    public float getPrix() {
         return prix;
     }
 
-    public String getAge() {
+    public float getAge() {
         return limite_age;
     }
 
@@ -63,11 +63,11 @@ public class Attraction {
         this.description = description;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(float prix) {
         this.prix = prix;
     }
 
-    public void setAge(String limite_age) {
+    public void setAge(float limite_age) {
         this.limite_age = limite_age;
     }
 
@@ -75,5 +75,3 @@ public class Attraction {
         this.imageUrl = imageUrl;
     }
 }
-
-
