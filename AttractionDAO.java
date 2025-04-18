@@ -17,8 +17,8 @@ public class AttractionDAO extends DAO<Attraction> {
                         rs.getInt("id"),
                         rs.getString("nom"),
                         rs.getString("description"),
-                        rs.getString("prix_base"),
-                        rs.getString("limite_age"),
+                        rs.getFloat("prix_base"),
+                        rs.getFloat("limite_age"),
                         rs.getString("image_url")
                 );
             }
@@ -36,8 +36,8 @@ public class AttractionDAO extends DAO<Attraction> {
 
             stmt.setString(1, obj.getNom());
             stmt.setString(2, obj.getDescription());
-            stmt.setString(3, obj.getPrix());
-            stmt.setString(4, obj.getAge());
+            stmt.setFloat(3, obj.getPrix());
+            stmt.setFloat(4, obj.getAge());
             stmt.setString(5, obj.getImageUrl());
 
             stmt.executeUpdate();
@@ -59,8 +59,8 @@ public class AttractionDAO extends DAO<Attraction> {
 
             stmt.setString(1, obj.getNom());
             stmt.setString(2, obj.getDescription());
-            stmt.setString(3, obj.getPrix());
-            stmt.setString(4, obj.getAge());
+            stmt.setFloat(3, obj.getPrix());
+            stmt.setFloat(4, obj.getAge());
             stmt.setString(5, obj.getImageUrl());
             stmt.setInt(6, obj.getId());
 
@@ -91,8 +91,8 @@ public class AttractionDAO extends DAO<Attraction> {
                         rs.getInt("id"),
                         rs.getString("nom"),
                         rs.getString("description"),
-                        rs.getString("prix_base"),
-                        rs.getString("limite_age"),
+                        rs.getFloat("prix_base"),
+                        rs.getFloat("limite_age"),
                         rs.getString("image_url")
                 );
                 attractions.add(a);
@@ -109,8 +109,8 @@ public class AttractionDAO extends DAO<Attraction> {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, attraction.getNom());
             stmt.setString(2, attraction.getDescription());
-            stmt.setString(3, attraction.getPrix());
-            stmt.setString(4, attraction.getAge()); // ou .getLimiteAge() selon ta classe
+            stmt.setFloat(3, attraction.getPrix());
+            stmt.setFloat(4, attraction.getAge()); // ou .getLimiteAge() selon ta classe
             stmt.setString(5, attraction.getImageUrl());
             stmt.executeUpdate();
         } catch (Exception e) {
@@ -128,5 +128,3 @@ public class AttractionDAO extends DAO<Attraction> {
         }
     }
 }
-
-
