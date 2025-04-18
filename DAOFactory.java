@@ -20,4 +20,3 @@ public class DAOFactory {
         return new AttractionDAO(); // ✅ Ici on retourne le type concret
     }
 }
-
