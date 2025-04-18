@@ -77,7 +77,7 @@ public class FenetrePrincipale extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    Image img = ImageIO.read(new URL("https://cdn.pixabay.com/photo/2022/09/27/19/46/ai-generated-7483596_960_720.jpg"));
+                    Image img = ImageIO.read(new URL("https://media-hosting.imagekit.io/d396130cd6c348e0/ChatGPT_Image_16_avr._2025_10_15_18.jpg?Expires=1839582305&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=dPv3bomp7yYkqSZbpIFPlw45H7HBVOMTBYlr6iswd7DZ39Pefj3XS~ylJCptJwbIXHsBBxYT7BK5rGGwvgLdgKCT~CiYCoWCsXFW5R96Sxr-pedZ5fiVsGsVoE8cNoM~6bdi0~1vR5TTjBctOYoQgMqIHvQZaA~hMgh6BRpTACnhEDrLWMPEdC9-6WwCwldePz82mTKmOtAIl2R5ijIF7SYSc80SWF6yxe9gwMhq6khcrbM1GHZzno1oOcn91Vo-eqqTmBIsZ1LlGDXHuR6~kwc0HaSvjStb56H8k-qvjxG1Q43dFQEHaswWlavSi5btXNBkx6nrn5RnlAOm3jexSA__"));
                     g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -181,8 +181,8 @@ public class FenetrePrincipale extends JFrame {
                 Attraction nouvelle = new Attraction(
                         nomField.getText(),
                         descField.getText(),
-                        prixField.getText(),
-                        typeField.getText(),
+                        Float.parseFloat(prixField.getText()),
+                        Float.parseFloat(typeField.getText()),
                         imageField.getText()
                 );
                 System.out.println(">>> Nouvelle attraction créée : " + nouvelle.getNom());
