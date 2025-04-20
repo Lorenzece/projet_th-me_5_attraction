@@ -35,7 +35,7 @@ public class FenetrePrincipale extends JFrame {
 
 // -------- Barre d'outils --------
         JToolBar toolBar = new JToolBar();
-        toolBar.setFloatable(false); // optionnel : pour empêcher de déplacer la barre
+        toolBar.setFloatable(false);
 
         JButton refreshBtn = new JButton("🔄 Rafraîchir");
         JButton editBtn = new JButton("🛠️ Édition");
@@ -44,13 +44,12 @@ public class FenetrePrincipale extends JFrame {
         JButton quitterItem = new JButton("❌ Quitter");
 
 // Ajout des actions
-        accueilItem.addActionListener(e -> cardLayout.show(cardsPanel, "accueil"));
+        accueilItem.addActionListener(e -> cardLayout.show(cardsPanel, "blog"));
         reserverItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Module de réservation à venir !"));
         quitterItem.addActionListener(e -> System.exit(0));
         refreshBtn.addActionListener(e -> chargerAttractions());
         editBtn.addActionListener(e -> afficherFormulaire());
 
-// Ajout avec espace entre chaque bouton
         toolBar.add(refreshBtn);
         toolBar.add(Box.createHorizontalStrut(150));
 
@@ -71,6 +70,9 @@ public class FenetrePrincipale extends JFrame {
         // -------- CardLayout avec deux vues --------
         cardLayout = new CardLayout();
         cardsPanel = new JPanel(cardLayout);
+        PageAccueilBlog blogPanel = new PageAccueilBlog();
+        cardsPanel.add(blogPanel, "blog");
+
 
         // --- Écran d'accueil ---
         accueilPanel = new JPanel() {
@@ -107,9 +109,8 @@ public class FenetrePrincipale extends JFrame {
             accueilPanel.add(btn);
         }
 
-// Si tu as moins de 28 attractions, ajoute des boutons vides pour remplir la grille
         for (; i < totalBoutons; i++) {
-            accueilPanel.add(new JLabel()); // ou new JButton() désactivé si tu préfères
+            accueilPanel.add(new JLabel());
         }
 
 
@@ -124,7 +125,6 @@ public class FenetrePrincipale extends JFrame {
 
         vuePrincipale.add(retourPanel, BorderLayout.NORTH);
 
-        // Panneau gauche avec image rivière + boutons
         JPanel leftPanel = new JPanel(new BorderLayout());
         try {
             BufferedImage riverImage = ImageIO.read(new URL("https://cdn.pixabay.com/photo/2022/09/27/19/46/ai-generated-7483596_960_720.jpg"));
@@ -145,7 +145,6 @@ public class FenetrePrincipale extends JFrame {
         leftBackgroundLabel.add(scrollBoutons, BorderLayout.CENTER);
         leftPanel.add(leftBackgroundLabel, BorderLayout.CENTER);
 
-        // Zone centrale pour les détails
         JPanel centerPanel = new JPanel(new BorderLayout());
         mainBackgroundLabel = new JLabel();
         mainBackgroundLabel.setLayout(new BorderLayout());
@@ -162,7 +161,6 @@ public class FenetrePrincipale extends JFrame {
         mainBackgroundLabel.add(scrollDetails, BorderLayout.CENTER);
         centerPanel.add(mainBackgroundLabel);
 
-        // Formulaire d'ajout
         formulairePanel = new JPanel(new GridLayout(6, 2));
         formulairePanel.setVisible(false);
 
@@ -226,10 +224,8 @@ public class FenetrePrincipale extends JFrame {
 
         setVisible(true);
 
-        // Par défaut, on est sur l'accueil
         cardLayout.show(cardsPanel, "accueil");
 
-        // Charger les attractions pour le panneau de gauche
         chargerAttractions();
     }
 
@@ -265,17 +261,14 @@ public class FenetrePrincipale extends JFrame {
     }
 
     private void afficherDetails(Attraction a) {
-        // Créer un nouveau panel principal pour contenir image + texte
         JPanel mainContentPanel = new JPanel();
         mainContentPanel.setLayout(new BoxLayout(mainContentPanel, BoxLayout.Y_AXIS));
         mainContentPanel.setOpaque(false);
 
-        // Image en haut - Charger depuis un chemin local
         JLabel imageLabel = new JLabel();
         try {
-            // Remplacez "a.getImageUrl()" par le chemin local de l'image
-            File imageFile = new File(a.getImageUrl());  // a.getImageUrl() doit être un chemin local
-            if (imageFile.exists() && imageFile.isFile()) {  // Vérifie si le fichier existe et est valide
+            File imageFile = new File(a.getImageUrl());
+            if (imageFile.exists() && imageFile.isFile()) {
                 BufferedImage image = ImageIO.read(imageFile);
                 Image scaledImage = image.getScaledInstance(720, 360, Image.SCALE_SMOOTH);
                 imageLabel.setIcon(new ImageIcon(scaledImage));
@@ -309,12 +302,10 @@ public class FenetrePrincipale extends JFrame {
 
         mainContentPanel.add(scrollPane);
 
-        // Nettoyer le label principal et ajouter le nouveau panel
         mainBackgroundLabel.removeAll();
         mainBackgroundLabel.setLayout(new BorderLayout());
         mainBackgroundLabel.add(mainContentPanel, BorderLayout.CENTER);
 
-        // Rafraîchir
         mainBackgroundLabel.revalidate();
         mainBackgroundLabel.repaint();
     }
